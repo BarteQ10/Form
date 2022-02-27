@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pesel</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Bartłomiej Paszkowski">
+</head>
+    
+<script>
+function birth(){
+    let pesel = document.getElementById("pesel").value 
+    if(pesel.length > 5) {
+        if(pesel.substr(2,2) < 13){
+            var date = "19"+pesel.substr(0,2)+"-"
+            date += pesel.substr(2,2)
+            date += "-"+pesel.substr(4,2)
+            document.getElementById("birthDate").value = date
+        }
+        else if(pesel.substr(2,2) > 20 && pesel.substr(2,2) < 33){
+            var date = "20"+pesel.substr(0,2)+"-"
+            if(pesel.substr(2,2)-20 < 10){
+                date += "0"+(pesel.substr(2,2)-20).toString()
+            } 
+            else{
+                date += pesel.substr(2,2)-20
+            }   
+            if(pesel.substr(4,2)< 32){
+            date += "-"+pesel.substr(4,2)
+            document.getElementById("birthDate").value = date
+            }
+            else{
+                document.getElementById("birthDate").value = null
+                alert("Podaj odpowiedni dzień")
+            }            
+        }
+        else{
+            document.getElementById("birthDate").value = null
+            alert("Podaj odpowiedni miesiac")
+        }       
+    }
+    else{
+        document.getElementById("birthDate").value = null
+    }    
+}
+function myFunction() {
+  if (document.getElementById('f').checkValidity()) {
+    alert("Dodano pomyślnie!");
+  }
+}
+</script>
+    <center>
+        <form id="f">           
+            Imie:<br>
+            <input type="text" maxlength="20" required><br>
+            Nazwisko:<br>
+            <input type="text" maxlength="30" required><br>
+            Pesel:<br>
+            <input type="text" id="pesel" onkeyup="birth()" minlength="11" maxlength="11" required><br>
+            Data urodzenia:<br>
+            <input type="date" id="birthDate" name="birthDate" required><br>
+            <button type="submit" onclick="myFunction()">Wyślij</button>
+        </form>
+    </center>
+    
+    
+</html>
